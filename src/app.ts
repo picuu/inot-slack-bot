@@ -1,5 +1,5 @@
 import { App, LogLevel } from '@slack/bolt'
-import registerListeners from './listeners'
+import registerListeners from '@/listeners'
 
 process.loadEnvFile()
 
@@ -8,7 +8,7 @@ const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   socketMode: true,
   appToken: process.env.SLACK_APP_TOKEN,
-  logLevel: LogLevel.DEBUG
+  logLevel: LogLevel.INFO
 })
 
 /** Register Listeners */
