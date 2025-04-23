@@ -25,7 +25,7 @@ const listRepos = async ({ client, ack, respond, logger, command }: Args) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: `*${repos.getAmount()}* repos found for user *${username}*`
+          text: `:mag: *${repos.getAmount()}* repos found for user *${username}*`
         }
       },
       {

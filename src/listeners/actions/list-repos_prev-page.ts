@@ -7,13 +7,13 @@ import type { AllMiddlewareArgs, BlockAction, SlackActionMiddlewareArgs } from '
 
 type Args = AllMiddlewareArgs & SlackActionMiddlewareArgs<BlockAction>
 
-const listReposNextPage = async ({ ack, respond, client, logger, payload, body }: Args) => {
+const listReposPrevPage = async ({ ack, respond, client, logger, payload, body }: Args) => {
   try {
     await ack()
 
     // @ts-expect-error - Value DOES exist in payload, but is not typed
     const { username, paginatedReposBlocksPageSize, currentPageIndex: prevPageIndex } = JSON.parse(payload.value)
-    const currentPageIndex = prevPageIndex + 1
+    const currentPageIndex = prevPageIndex - 1
 
     const reposResponse = await getUserRepos(username)
 
@@ -52,10 +52,10 @@ const listReposNextPage = async ({ ack, respond, client, logger, payload, body }
 
     const actions = {
       type: 'actions',
-      elements: [prevPageButton]
+      elements: [nextPageButton]
     }
 
-    if (currentPageIndex < paginatedReposBlocks.getTotalPages() - 1) actions.elements.push(nextPageButton)
+    if (currentPageIndex > 0) actions.elements.unshift(prevPageButton)
 
     const blocks = [
       {
@@ -84,4 +84,4 @@ const listReposNextPage = async ({ ack, respond, client, logger, payload, body }
   }
 }
 
-export default listReposNextPage
+export default listReposPrevPage
