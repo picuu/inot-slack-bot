@@ -2,14 +2,14 @@ import type { RepositoryResponse } from '@/types'
 import { SimpleUser } from '@/models'
 
 class Repository {
-  id: number
-  name: string
-  full_name: string
-  owner: SimpleUser
-  html_url: string
-  url: string
-  description: string | null
-  topics?: string[]
+  public readonly id: number
+  public readonly name: string
+  public readonly full_name: string
+  public readonly owner: SimpleUser
+  public readonly html_url: string
+  public readonly url: string
+  public readonly description: string | null
+  public readonly topics?: string[]
 
   constructor(repository: RepositoryResponse) {
     this.id = repository.id
@@ -24,6 +24,26 @@ class Repository {
 
   hasTopics() {
     return this.topics && this.topics.length > 0
+  }
+
+  getDisplayBlocks() {
+    const blocks = []
+
+    blocks.push({
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        text: `*<${this.url}|${this.name}>*\n${this.description ? this.description : ''}`
+      }
+    })
+
+    if (this.hasTopics())
+      blocks.push({
+        type: 'context',
+        elements: [{ type: 'mrkdwn', text: `🏷️ *Topics:* ${this.topics?.join(' | ')}` }]
+      })
+
+    return blocks
   }
 }
 
