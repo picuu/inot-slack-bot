@@ -1,3 +1,4 @@
+import { ApiError } from '@/errors'
 import { Repositories } from '@/models'
 import { getUserRepos } from '@/services'
 import type { Block } from '@/types'
@@ -16,11 +17,9 @@ const listReposNextPage = async ({ ack, respond, client, logger, payload, body }
     // @ts-expect-error - Value DOES exist in payload, but is not typed
     const { username, paginatedReposBlocksPageSize, currentPageIndex } = JSON.parse(payload.value)
 
-    const [error, resposResponse] = await getUserRepos(username)
-    if (error) return await respond(error)
-    if (resposResponse?.length === 0) return await respond(`No repos found for user ${username}`)
+    const reposResponse = await getUserRepos(username)
 
-    const repos = new Repositories(resposResponse)
+    const repos = new Repositories(reposResponse)
     const paginatedReposBlocks = new Pagination<Block>(repos.getDisplayBlocks(), paginatedReposBlocksPageSize)
 
     const blocks = [
@@ -65,6 +64,7 @@ const listReposNextPage = async ({ ack, respond, client, logger, payload, body }
       blocks
     })
   } catch (error) {
+    if (error instanceof ApiError) return respond(error.message)
     logger.error(error)
   }
 }
