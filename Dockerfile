@@ -9,3 +9,5 @@ RUN ls
 
 RUN corepack enable && corepack install -g yarn@4.7.0
 RUN yarn
+
+CMD [ "bash", "/inot-slack-bot/start.sh"]
