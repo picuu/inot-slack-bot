@@ -21,13 +21,12 @@ gh extension install cli/gh-webhook
 
 # EJECUTAR EL PROGRAMA
 
-yarn start
+# yarn start
 
 # Reads the events from the file creted
 WEBHOOK_EVENTS="repository,workflow_run,pull_request"
 
 # Forwards the webhook events to our FLASk APP
-gh webhook forward --org=$GH_ORG --events=$WEBHOOK_EVENTS --url="http://127.0.0.1:5000/webhook" &
-
+gh webhook forward --org=Inot-Org --events=$WEBHOOK_EVENTS --url="http://127.0.0.1:5000/webhook" &
 # Wait for the webhook forward process to finish
 wait
