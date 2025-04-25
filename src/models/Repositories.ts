@@ -1,5 +1,5 @@
-import type { RepositoryResponse, Block } from '@/types'
 import { Repository } from '@/models'
+import type { Block, RepositoryResponse } from '@/types'
 
 class Repositories {
   private repositories: Repository[]

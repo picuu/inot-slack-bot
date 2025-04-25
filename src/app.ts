@@ -1,5 +1,5 @@
-import { App, LogLevel } from '@slack/bolt'
 import registerListeners from '@/listeners'
+import { App, LogLevel } from '@slack/bolt'
 
 process.loadEnvFile()
 

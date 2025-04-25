@@ -1,5 +1,5 @@
-import type { RepositoryResponse } from '@/types'
 import { SimpleUser } from '@/models'
+import type { RepositoryResponse } from '@/types'
 
 class Repository {
   public readonly id: number

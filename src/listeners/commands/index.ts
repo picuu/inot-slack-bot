@@ -1,6 +1,6 @@
 import type { App } from '@slack/bolt'
-import sampleCommandCallback from './sample-command'
 import listRepos from './list-repos'
+import sampleCommandCallback from './sample-command'
 
 const register = (app: App) => {
   app.command('/sample-command', sampleCommandCallback)

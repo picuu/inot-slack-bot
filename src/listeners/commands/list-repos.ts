@@ -1,9 +1,9 @@
-import type { AllMiddlewareArgs, SlackCommandMiddlewareArgs } from '@slack/bolt'
-import { getUserRepos } from '@/services'
-import { Repositories } from '@/models'
-import { Pagination } from '@/utils'
-import type { Block } from '@/types'
 import { ApiError } from '@/errors'
+import { Repositories } from '@/models'
+import { getUserRepos } from '@/services'
+import type { Block } from '@/types'
+import { Pagination } from '@/utils'
+import type { AllMiddlewareArgs, SlackCommandMiddlewareArgs } from '@slack/bolt'
 
 type Args = AllMiddlewareArgs & SlackCommandMiddlewareArgs
 

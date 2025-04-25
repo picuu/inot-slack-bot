@@ -1,6 +1,6 @@
-import Redis from 'ioredis'
 import { ApiError } from '@/errors'
 import type { RepositoryResponse } from '@/types'
+import Redis from 'ioredis'
 
 process.loadEnvFile()
 
