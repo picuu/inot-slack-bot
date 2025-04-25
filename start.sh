@@ -21,7 +21,7 @@ gh extension install cli/gh-webhook
 
 # EJECUTAR EL PROGRAMA
 
-# yarn start
+yarn start
 
 # Reads the events from the file creted
 WEBHOOK_EVENTS="repository,workflow_run,pull_request"
