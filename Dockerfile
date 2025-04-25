@@ -1,6 +1,11 @@
 FROM node:22.14.0
 
 RUN apt update -y && apt upgrade -y
+RUN apt install -y git \
+    ca-certificates \
+    curl \
+    wget \
+    gh
 
 WORKDIR /inot-slack-bot
 COPY . .
