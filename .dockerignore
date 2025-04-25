@@ -1,1 +1,8 @@
-# Cosas que no queremos copiar en el docker
+.github
+.vscode
+.yarn
+LICENSE
+manifest.json
+yarn.lock
+README.md
+biome.jsonc
