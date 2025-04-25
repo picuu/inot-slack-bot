@@ -5,8 +5,8 @@
   "main": "dist/app.js",
   "scripts": {
     "build": "tsc && tsc-alias",
-    "dev": "ts-node -r tsconfig-paths/register ./src/app.ts",
-    "start": "yarn build && node ./dist/app.js",
+    "dev": "ts-node -r tsconfig-paths/register ./src/index.ts",
+    "start": "yarn build && node ./dist/index.js",
     "lint": "biome check src/**/*.ts",
     "lint:fix": "biome check --write src/**/*.ts",
     "test": "yarn build && yarn lint"
@@ -22,12 +22,7 @@
     }
   ],
   "license": "MIT",
-  "keywords": [
-    "slack",
-    "bolt",
-    "slackapi",
-    "typescript"
-  ],
+  "keywords": ["slack", "bolt", "slackapi", "typescript"],
   "repository": {
     "type": "git",
     "url": "https://github.com/slack-samples/bolt-ts-starter-template.git"
@@ -37,6 +32,8 @@
   },
   "dependencies": {
     "@slack/bolt": "^4.2.1",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
     "ioredis": "^5.6.1"
   },
   "devDependencies": {
