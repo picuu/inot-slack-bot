@@ -84,7 +84,7 @@ jobs:
             echo "release_name_tag=$release_name_tag" >> $GITHUB_OUTPUT
 
         - name: Create new release
-          uses: softprops/action-gh-release@v2.2.1
+          uses: softprops/action-gh-release@v2.2.2
           with:
             release_name: "Release ${{needs.create_docker_image.outputs.date}}"
             files: ./*
