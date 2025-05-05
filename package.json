@@ -6,7 +6,10 @@
   "scripts": {
     "build": "tsc && tsc-alias",
     "dev": "ts-node -r tsconfig-paths/register ./src/index.ts",
+    "dev:api": "ts-node -r tsconfig-paths/register ./src/api/index.ts",
     "start": "yarn build && node ./dist/index.js",
+    "start:bot": "yarn build && node ./dist/app.js",
+    "start:api": "yarn build && node ./dist/api/index.js",
     "lint": "biome check src/**/*.ts",
     "lint:fix": "biome check --write src/**/*.ts",
     "test": "yarn build && yarn lint"
