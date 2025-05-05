@@ -1,4 +1,7 @@
-#!/usr/bin/bash
+#!/bin/bash
+
+echo -e "[INFO] Starting the script...\n"
+echo -e "[INFO] Checking environment variables...\n"
 
 # We give permissions to execute the script
 chmod +x var_check.sh
@@ -6,8 +9,12 @@ chmod +x var_check.sh
 # Exec the script to check the environment variables
 ./var_check.sh
 
+echo -e "[INFO] Environment variables are successful.\n"
+
+echo -e "[INFO] Logging to GitHub via GH CLI.\n"
+
 # Declares the GH_TOKEN environment variable
-GH_TOKEN=$(echo $GH_TOKEN_ENV)
+GH_TOKEN=$(echo $GH_TOKEN_ENV 2>/dev/null)
 
 # Creates a file with the GH_TOKEN
 echo $GH_TOKEN >> mytoken.txt
@@ -16,17 +23,33 @@ echo $GH_TOKEN >> mytoken.txt
 gh auth login --with-token  < mytoken.txt
 rm mytoken.txt
 
-# Install the gh extension
-gh extension install cli/gh-webhook
+echo -e "[INFO] Logging successful.\n"
 
-# EJECUTAR EL PROGRAMA
+# Install the gh-webhook extension
+if gh extension list | grep -q "cli/gh-webhook"; then
+    echo -e "[INFO] gh-webhook extension is installed.\n"
+else
+    echo -e "[INFO] gh-webhook extension is not installed. Installing...\n"
+    gh extension install cli/gh-webhook
+fi
 
-yarn start
+# Give permissions
+chmod +x start_apps.sh
+chmod +x start_webhook.sh
 
-# Reads the events from the file creted
-WEBHOOK_EVENTS="repository,workflow_run,pull_request"
+echo -e "[INFO] Starting apps...\n"
 
-# Forwards the webhook events to our FLASk APP
-gh webhook forward --org=Inot-Org --events=$WEBHOOK_EVENTS --url="http://127.0.0.1:5000/webhook" &
+yarn start &
+
+# Set variables for the webhook
+ORG_NAME="Inot-Org"
+WEBHOOK_EVENTS="repository,pull_request"
+
+while [ "true" = "true" ]; do
+    # Forwards the webhook events to our API
+  gh webhook forward --org=$ORG_NAME --events=$WEBHOOK_EVENTS --url="http://127.0.0.1:5000/webhook" &
+  wait
+done
+
 # Wait for the webhook forward process to finish
 wait
