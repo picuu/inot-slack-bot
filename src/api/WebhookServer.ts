@@ -3,11 +3,13 @@ import type { Express, Request, Response } from 'express'
 
 class WebhookServer {
   private app: Express
+  private host: string
   private port: number
   private path: string
 
-  constructor(port: number, path: string) {
+  constructor(host: string, port: number, path: string) {
     this.app = express()
+    this.host = host
     this.port = port
     this.path = path
 
@@ -24,9 +26,9 @@ class WebhookServer {
   }
 
   run() {
-    this.app.listen(this.port, () => {
+    this.app.listen(this.port, this.host, () => {
       // biome-ignore lint/suspicious/noConsole: This is a server log
-      console.log(`Server is running on http://localhost:${this.port}`)
+      console.log(`Server is running on http://${this.host}:${this.port}`)
     })
   }
 }
