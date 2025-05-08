@@ -33,23 +33,19 @@ else
     gh extension install cli/gh-webhook
 fi
 
-# Give permissions
-chmod +x start_apps.sh
-chmod +x start_webhook.sh
-
 echo -e "[INFO] Starting apps...\n"
 
-yarn start &
+yarn start:api &
 
 # Set variables for the webhook
 ORG_NAME="Inot-Org"
 WEBHOOK_EVENTS="repository,pull_request"
 
 while [ "true" = "true" ]; do
-    # Forwards the webhook events to our API
-  gh webhook forward --org=$ORG_NAME --events=$WEBHOOK_EVENTS --url="http://127.0.0.1:5000/webhook" &
+  # Forwards the webhook events to our API
+  gh webhook forward --org=$ORG_NAME --events=$WEBHOOK_EVENTS --url="http://localhost:5000/webhook" &
+  # Wait for the webhook forward process to finish
   wait
 done
 
-# Wait for the webhook forward process to finish
 wait
