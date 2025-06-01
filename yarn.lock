@@ -624,7 +624,7 @@ __metadata:
     "@types/node": "npm:^22.14.1"
     ioredis: "npm:^5.6.1"
     ts-node: "npm:^10.9.2"
-    tsc-alias: "npm:^1.8.14"
+    tsc-alias: "npm:^1.8.16"
     tsconfig-paths: "npm:^4.2.0"
     typescript: "npm:^5.8.2"
   languageName: unknown
@@ -2543,9 +2543,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsc-alias@npm:^1.8.14":
-  version: 1.8.14
-  resolution: "tsc-alias@npm:1.8.14"
+"tsc-alias@npm:^1.8.16":
+  version: 1.8.16
+  resolution: "tsc-alias@npm:1.8.16"
   dependencies:
     chokidar: "npm:^3.5.3"
     commander: "npm:^9.0.0"
@@ -2556,7 +2556,7 @@ __metadata:
     plimit-lit: "npm:^1.2.6"
   bin:
     tsc-alias: dist/bin/index.js
-  checksum: 10c0/d6d4290dce310ece0e059a702a513388ae0fadfbdb58810cfb172d04da6d3bf064295d2ecffc0b3ddc8fc571d4765aa77c73ff14a3fb84a6d827f8ac1205a272
+  checksum: 10c0/5775a6044bd5b6e94efdf1902493aa959270def65e7915edad78023fac7f42f25724842bd98f38a5d00e01f7395dca102a6615933bec3bdd887617d00419f66a
   languageName: node
   linkType: hard
 
